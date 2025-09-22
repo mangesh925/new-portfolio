@@ -1,15 +1,17 @@
 @font-face {
-    font-family: PP mori;
-    src: url(./ppmori.ttf);
+    font-family: "PP Mori";
+    src: url('./ppmori.ttf') format('truetype');
+    font-display: swap;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: PP mori;
+    font-family: "PP Mori", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
     color: #fff;
 }
+
 
 html, body {
     height: 100%;
@@ -94,7 +96,7 @@ html, body {
     padding-top: 30px;
     font-size: 8vw;
     font-weight: 300;
-    font-family: PP mori;
+font-family: "PP Mori", Arial, sans-serif;
 
     margin-left: 6vw;
     transform-origin: left;
