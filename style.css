@@ -126,9 +126,9 @@ html, body {
 }
 
 .page2{
-    min-height: 80vh;
+    min-height: 90vh; /* INCREASED from 80vh */
     width: 100%;
-    padding: 100px 5vw;
+    padding: 100px 5vw 120px 5vw; /* ADDED bottom padding */
     position: relative;
     z-index: 9;
 }
@@ -137,15 +137,19 @@ html, body {
     font-size:7vw;
     font-weight: 500;
     color: #111;
+    margin-bottom: 60px; /* ADDED margin bottom */
 }
 
 .page2-container{
-    height: 60vh;
+    height: auto; /* CHANGED from 60vh to auto */
+    min-height: 40vh; /* ADDED min-height */
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* CHANGED from center to flex-start */
     justify-content: space-between;
+    gap: 40px; /* ADDED gap */
 }
+
 
 .page2-left{
     width: 40%;
@@ -947,5 +951,98 @@ footer {
     
     body {
         overflow-x: hidden;
+    }
+}
+
+/* BIG DESKTOP FIXES (1600px+ screens) */
+@media (min-width: 1600px) {
+    /* Fix About Me spacing */
+    .page2 {
+        min-height: 90vh !important;
+        padding: 120px 5vw 150px 5vw !important;
+    }
+    
+    .page2 h1 {
+        font-size: 6vw !important;
+        margin-bottom: 80px !important;
+    }
+    
+    .page2-container {
+        height: auto !important;
+        min-height: 50vh !important;
+        gap: 60px !important;
+    }
+    
+    .page2-left h2 {
+        font-size: 2vw !important;
+        line-height: 3.2vw !important;
+        margin-bottom: 40px !important;
+    }
+    
+    /* Fix Footer for Big Desktop */
+    footer {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 8vh 5vw 0 5vw !important;
+        align-items: flex-start !important;
+    }
+    
+    .footer-container {
+        padding-top: 12vh !important;
+        min-height: 70vh !important;
+        gap: 40px;
+    }
+    
+    .connect-section h1 {
+        font-size: 4vw !important;
+    }
+    
+    /* Ensure main content doesn't overlap footer */
+    .main {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ULTRA WIDE DESKTOP FIXES (1920px+ screens) */
+@media (min-width: 1920px) {
+    .page2 {
+        padding: 150px 8vw 200px 8vw !important;
+    }
+    
+    .page2-container {
+        gap: 80px !important;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    footer {
+        height: 100vh !important;
+        padding: 10vh 8vw 0 8vw !important;
+    }
+    
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 15vh !important;
+    }
+}
+
+/* WINDOWS HIGH DPI SCREENS FIX */
+@media (min-width: 1400px) and (min-height: 900px) {
+    footer {
+        position: relative !important;
+        bottom: 0 !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 6vh 5vw 20vh 5vw !important;
+    }
+    
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    html {
+        overflow-x: hidden !important;
     }
 }
