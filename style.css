@@ -1,6 +1,6 @@
 @font-face {
     font-family: "PP Mori";
-    src: url('./ppmori.ttf') format('truetype');
+    src: url('./ppmori-regular.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -11,7 +11,6 @@
     font-family: "PP Mori", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
     color: #fff;
 }
-
 
 html, body {
     height: 100%;
