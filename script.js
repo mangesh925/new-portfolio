@@ -1,10 +1,16 @@
 function init() {
     gsap.registerPlugin(ScrollTrigger);
 
-    const locoScroll = new LocomotiveScroll({
-        el: document.querySelector(".main"),
-        smooth: true
-    });
+    // Update your Locomotive Scroll initialization
+const locoScroll = new LocomotiveScroll({
+    el: document.querySelector(".main"),
+    smooth: true,
+    smoothMobile: true,  // Add this line
+    tablet: {
+        breakpoint: 0    // Add this to fix tablet issues
+    }
+});
+
     locoScroll.on("scroll", ScrollTrigger.update);
 
     ScrollTrigger.scrollerProxy(".main", {
@@ -121,3 +127,31 @@ h4.forEach(function(elem){
         purple.style.opacity = "0"
     })
 })
+
+// Add this JavaScript
+function updateVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', updateVH);
+window.addEventListener('orientationchange', updateVH);
+updateVH();
+
+// Disable heavy animations on mobile
+const isMobile = window.innerWidth < 768;
+if (!isMobile) {
+    // Only run complex GSAP animations on desktop
+    var tl = gsap.timeline({
+        scrollTrigger: { /* your animations */ }
+    });
+}
+
+// Optimize cursor performance on mobile
+const cursor = document.querySelector(".cursor");
+if (window.innerWidth >= 768) {
+    document.addEventListener("mousemove", function(dets){
+        cursor.style.left = dets.x + 20 + "px";
+        cursor.style.top = dets.y + 20 + "px";
+    });
+}

@@ -4,6 +4,16 @@
     font-display: swap;
 }
 
+/* CSS Custom Properties for better responsiveness */
+:root {
+    --vh: 1vh;
+    --primary-color: #EDBFFF;
+    --text-dark: #111;
+    --text-light: #fff;
+    --bg-dark: #0F0D0D;
+    --bg-light: #fff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,47 +25,58 @@
 html, body {
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
-#purple{
-    height: 100vh;
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+#purple {
+    height: calc(var(--vh) * 100);
     width: 100vw;
     top: 0;
     position: fixed;
     z-index: 100;
-    background-color: #EDBFFF;
+    background-color: var(--primary-color);
     opacity: 0;
     display: none;
     transition: opacity ease 1s;
 }
 
-.cursor{
+.cursor {
     height: 20px;
     width: 20px;
     border-radius: 50%;
     position: fixed;
-    background-color: #EDBFFF;
+    background-color: var(--primary-color);
     z-index: 8;
     transition: background-image ease 0.5s;
     background-position: center;
-    background-size:cover ;
+    background-size: cover;
     mix-blend-mode: difference;
+    pointer-events: none;
 }
 
-.main{
-    background-color: #0F0D0D;
+.main {
+    background-color: var(--bg-dark);
     cursor: none;
 }
 
-.page1{
-    min-height: 100vh;
+.page1 {
+    min-height: calc(var(--vh) * 100);
     width: 100%;
     position: relative;
     z-index: 9;
     padding-top: 12vw;
 }
 
-#nav{
+#nav {
     height: 55px;
     width: 100%;
     display: flex;
@@ -64,94 +85,97 @@ html, body {
     padding: 0 30px;
     position: fixed;
     mix-blend-mode: difference;
-    z-index:102;
+    z-index: 102;
 }
 
-#nav img{
+#nav img {
     height: 50px;
+    width: auto;
 }
 
-#nav-part2{
+#nav-part2 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
 
-#nav #circle{
+#nav #circle {
     height: 18px;
     width: 18px;
     border-radius: 50%;
     background-color: #fff;
 }
 
-#nav h4{
+#nav h4 {
     font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
 }
 
-#nav h4:nth-child(1){
+#nav h4:nth-child(1) {
     border-bottom: 1.5px solid #fff;
 }
 
-.page1 h1{
+.page1 h1 {
     padding-top: 30px;
-    font-size: 8vw;
+    font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 300;
     font-family: "PP Mori", Arial, sans-serif;
     margin-left: 6vw;
     transform-origin: left;
 }
 
-.page1 h2{
-    font-size: 8vw;
+.page1 h2 {
+    font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 300;
     transform-origin: left;
     padding-top: 35px;
     margin-left: 17vw;
 }
 
-.page1 p{
+.page1 p {
     text-align: center;
     padding-top: 10px;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
 }
 
-.page1 #image{
+.page1 #image {
     width: 60%;
+    max-width: 800px;
+    height: auto;
     margin-top: 10vw;
     position: relative;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 }
 
-.page2{
-    min-height: 90vh; /* INCREASED from 80vh */
+.page2 {
+    min-height: calc(var(--vh) * 90);
     width: 100%;
-    padding: 100px 5vw 120px 5vw; /* ADDED bottom padding */
+    padding: 100px 5vw 120px 5vw;
     position: relative;
     z-index: 9;
 }
 
-.page2 h1{
-    font-size:7vw;
+.page2 h1 {
+    font-size: clamp(3rem, 7vw, 7rem);
     font-weight: 500;
-    color: #111;
-    margin-bottom: 60px; /* ADDED margin bottom */
+    color: var(--text-dark);
+    margin-bottom: 60px;
 }
 
-.page2-container{
-    height: auto; /* CHANGED from 60vh to auto */
-    min-height: 40vh; /* ADDED min-height */
+.page2-container {
+    height: auto;
+    min-height: 40vh;
     width: 100%;
     display: flex;
-    align-items: flex-start; /* CHANGED from center to flex-start */
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 40px; /* ADDED gap */
+    gap: 40px;
 }
 
-
-.page2-left{
+.page2-left {
     width: 40%;
 }
 
@@ -160,34 +184,34 @@ html, body {
     padding-left: 30px;
 }
 
-.page2-left h2{
-    font-size: 2.2vw;
+.page2-left h2 {
+    font-size: clamp(1.2rem, 2.2vw, 2.5rem);
     font-weight: 300;
-    color: #111;
-    line-height: 3.5vw;
+    color: var(--text-dark);
+    line-height: 1.6;
 }
 
 .page2-right h2 {
-    font-size: 3vw;
-    color: #111;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    color: var(--text-dark);
     padding-bottom: 20px;
     margin-top: 0;
     margin-bottom: 30px;
     font-weight: 900;
 }
 
-.page2-right p{
-    font-size: 28px;
-    color: #111;
+.page2-right p {
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    color: var(--text-dark);
 }
 
-.page2-right button{
+.page2-right button {
     width: 100%;
     border-radius: 50px;
     border: none;
     padding: 4px 0;
-    background-color: #EDBFFF;
-    color: #111;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
     margin-top: 20px;
 }
 
@@ -212,21 +236,21 @@ html, body {
 }
 
 .job-title {
-    font-size: 1.3vw;
+    font-size: clamp(0.9rem, 1.3vw, 1.5rem);
     font-weight: 600;
-    color: #111;
+    color: var(--text-dark);
     margin-bottom: 5px;
 }
 
 .company-name {
-    font-size: 1.1vw;
+    font-size: clamp(0.8rem, 1.1vw, 1.2rem);
     color: #666;
     font-weight: 400;
     margin-bottom: 8px;
 }
 
 .job-duration {
-    font-size: 0.9vw;
+    font-size: clamp(0.7rem, 0.9vw, 1rem);
     color: #999;
     font-weight: 300;
     letter-spacing: 0.5px;
@@ -236,7 +260,7 @@ html, body {
 #skills-marquee {
     min-height: 15vh;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--bg-light);
     padding: 4vw 0;
     position: relative;
     border-top: 2px solid #6c6c6c;
@@ -262,15 +286,15 @@ html, body {
 }
 
 #moving-text h1 {
-    font-size: 6vw;
+    font-size: clamp(2rem, 6vw, 6rem);
     display: inline-block;
-    color: #111;
+    color: var(--text-dark);
     font-weight: 500;
 }
 
 .gola {
-    height: 50px;
-    width: 50px;
+    height: clamp(30px, 5vw, 50px);
+    width: clamp(30px, 5vw, 50px);
     border-radius: 50%;
     display: inline-block;
     background-color: #6c6c6c;
@@ -286,46 +310,56 @@ html, body {
     }
 }
 
-.page3{
-    min-height: 100vh;
+.page3 {
+    min-height: calc(var(--vh) * 100);
     width: 100%;
     padding-top: 0;
     position: relative;
     z-index: 9;
 }
 
-.page3 h1{
-    font-size: 6.8vw;
+.page3 h1 {
+    font-size: clamp(2.5rem, 6.8vw, 7rem);
     font-weight: 300;
     color: white;
-    padding:5vw;
+    padding: 5vw;
 }
 
-.page3-part1{
+.page3-part1 {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 2vw;
+    padding: 0 2vw;
 }
 
-.page3-part1 img{
-    height: 400px;
-    margin-top: 160px;
+.page3-part1 img {
+    height: auto;
+    max-height: clamp(250px, 25vh, 400px);
+    width: 100%;
+    max-width: 500px;
+    object-fit: cover;
+    margin-top: clamp(40px, 10vh, 160px);
 }
 
-.page3-part1 #image1{
-    height: 400px;
-    margin-top: 40px;
+.page3-part1 #image1 {
+    height: auto;
+    max-height: clamp(250px, 25vh, 400px);
+    width: 100%;
+    max-width: 500px;
+    object-fit: cover;
+    margin-top: clamp(20px, 5vh, 40px);
 }
 
-.page4{
-    min-height: 100vh;
+.page4 {
+    min-height: calc(var(--vh) * 100);
     width: 100%;
     z-index: 9;
     position: relative;
-    padding: 170px 100px;
+    padding: clamp(80px, 12vh, 170px) clamp(20px, 8vw, 100px);
 }
 
-.elem{
+.elem {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -333,84 +367,94 @@ html, body {
     position: relative;
 }
 
-.elem img{
+.elem img {
     position: absolute;
     opacity: 0;
     transition: all ease-out 0.5s;
     transform: translateY(10%) rotate(2deg);
+    max-width: 400px;
+    height: auto;
 }
 
-.elem img:nth-child(1){
+.elem img:nth-child(1) {
     left: 2%;
 }
 
-.elem img:nth-child(3){
+.elem img:nth-child(3) {
     right: 5%;
 }
 
-.text-div{
+.text-div {
     height: 16vh;
     position: relative;
     z-index: 9;
     overflow: hidden;
 }
 
-.elem h1{
-    font-size: 7.5vw;
+.elem h1 {
+    font-size: clamp(3rem, 7.5vw, 8rem);
     font-weight: 600;
     transition: all ease-out 0.5s;
 }
 
-.elem:hover h1{
+.elem:hover h1 {
     transform: translateY(-100%);
-    color: #EDBFFF;
+    color: var(--primary-color);
 }
 
-.elem:hover img{
+.elem:hover img {
     opacity: 1;
     transform: translateY(0%) rotate(0deg);
 }
 
-.page5{
-    min-height: 100vh;
+.page5 {
+    min-height: calc(var(--vh) * 100);
     width: 100%;
     position: relative;
     z-index: 9;
-    padding: 140px 100px;
+    padding: clamp(80px, 15vh, 140px) clamp(20px, 8vw, 100px);
 }
 
-.page5 h2{
-    font-size: 4vw;
+.page5 h2 {
+    font-size: clamp(2rem, 4vw, 4rem);
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 50px;
 }
 
-.box{
+.box {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
-    padding: 0 20px;
+    min-height: 80px;
+    padding: 20px;
     border-top: 2px solid #dadada;
+    transition: all 0.3s ease;
 }
 
 .page5 a.box {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
 }
 
-.box:nth-last-child(1){
+.box:nth-last-child(1) {
     border-bottom: 2px solid #dadada;
 }
 
-/* FIXED FOOTER FOR WINDOWS DESKTOP */
+.box h3 {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.box h4 {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+/* Footer */
 footer {
     height: auto;
-    min-height: 90vh;
+    min-height: calc(var(--vh) * 90);
     width: 100%;
-    background-color: #fff;
+    background-color: var(--bg-light);
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -441,9 +485,9 @@ footer {
 }
 
 .footer-section h3 {
-    font-size: 1.2vw;
+    font-size: clamp(0.9rem, 1.2vw, 1.3rem);
     font-weight: 600;
-    color: #111;
+    color: var(--text-dark);
     margin-bottom: 2vw;
     letter-spacing: 0.5px;
 }
@@ -462,16 +506,16 @@ footer {
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: 3vw;
+    font-size: clamp(1rem, 3vw, 2rem);
     font-weight: 400;
-    color: #111;
+    color: var(--text-dark);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .social-links li a i {
-    font-size: 2.5vw;
-    color: #111;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--text-dark);
 }
 
 .social-links li a:hover {
@@ -490,18 +534,18 @@ footer {
 }
 
 .connect-section h1 {
-    font-size: 6vw;
+    font-size: clamp(3rem, 6vw, 6rem);
     font-weight: 700;
-    color: #111;
+    color: var(--text-dark);
     text-align: right;
     margin: 0;
     letter-spacing: -2px;
 }
 
 .email {
-    font-size: 1.4vw;
+    font-size: clamp(0.8rem, 1.4vw, 1.5rem);
     font-weight: 500;
-    color: #111;
+    color: var(--text-dark);
     margin: 0;
     letter-spacing: 1px;
 }
@@ -517,39 +561,20 @@ footer {
     transform: scale(1.02);
 }
 
-.connect-section a h1 {
-    font-size: 6vw;
-    font-weight: 700;
-    color: #111;
-    text-align: right;
-    margin: 0;
-    letter-spacing: -2px;
-    cursor: pointer;
-}
-
-/* Add to your CSS */
-:root {
-    --vh: 1vh;
-}
-
-/* Replace 100vh with: */
-.page1, .page3, .page4, .page5 {
-    min-height: calc(var(--vh) * 100);
-}
-
+/* Media Queries - Mobile First Approach */
 
 /* Large Desktop and Laptop screens */
 @media (max-width: 1440px) {
     .page1 h1, .page1 h2 {
-        font-size: 7vw;
+        font-size: clamp(2.5rem, 7vw, 7rem);
     }
-    
+
     .page2 h1 {
-        font-size: 6vw;
+        font-size: clamp(2.5rem, 6vw, 6rem);
     }
-    
+
     .page3 h1 {
-        font-size: 6vw;
+        font-size: clamp(2.5rem, 6vw, 6rem);
     }
 }
 
@@ -558,151 +583,113 @@ footer {
     .page1 {
         padding-top: 15vw;
     }
-    
-    .page1 h1, .page1 h2 {
-        font-size: 8vw;
-    }
-    
+
     .page1 #image {
         width: 65%;
         margin-top: 8vw;
     }
-    
+
     .page2 {
         padding: 80px 4vw;
     }
-    
-    .page2 h1 {
-        font-size: 7vw;
-    }
-    
-    .page3 h1 {
-        font-size: 7vw;
-    }
-    
+
     .page3-part1 img {
-        height: 350px;
-        margin-top: 140px;
+        max-height: clamp(220px, 22vh, 350px);
+        margin-top: clamp(35px, 8vh, 140px);
     }
-    
+
     .page3-part1 #image1 {
-        height: 350px;
-        margin-top: 35px;
+        max-height: clamp(220px, 22vh, 350px);
+        margin-top: clamp(20px, 5vh, 35px);
     }
-    
+
     .page5 {
-        padding: 120px 80px;
-    }
-    
-    .connect-section h1 {
-        font-size: 7vw;
+        padding: 120px clamp(20px, 6vw, 80px);
     }
 }
 
 /* Tablets and Small Laptops */
 @media (max-width: 1024px) {
+    .cursor {
+        display: none;
+    }
+
+    .main {
+        cursor: auto;
+    }
+
     .page1 {
         padding-top: 18vw;
     }
-    
-    .page1 h1, .page1 h2 {
-        font-size: 9vw;
-    }
-    
+
     .page1 #image {
         width: 70%;
         margin-top: 10vw;
     }
-    
+
     .page2-container {
         height: auto;
         flex-direction: column;
         gap: 30px;
     }
-    
+
     .page2-left {
         width: 100%;
     }
-    
+
     .page2-right {
         width: 100%;
         padding-left: 0;
     }
-    
-    .page2-left h2 {
-        font-size: 3vw;
-        line-height: 4.5vw;
-    }
-    
-    .page2-right h2 {
-        font-size: 4vw;
-    }
-    
-    .job-title {
-        font-size: 2.5vw;
-    }
-    
-    .company-name {
-        font-size: 2.2vw;
-    }
-    
-    .job-duration {
-        font-size: 2vw;
-    }
-    
-    .page3 h1 {
-        font-size: 8vw;
-    }
-    
+
     .page3-part1 {
         flex-direction: column;
         align-items: center;
         gap: 30px;
     }
-    
+
     .page3-part1 img {
-        height: 280px;
+        max-height: clamp(200px, 25vh, 280px);
         margin-top: 20px;
         width: 85%;
-        object-fit: cover;
+        max-width: none;
     }
-    
+
     .page3-part1 #image1 {
-        height: 280px;
+        max-height: clamp(200px, 25vh, 280px);
         margin-top: 20px;
     }
-    
+
     footer {
         height: auto;
         min-height: 70vh;
         padding: 4vh 3vw 8vh 3vw;
     }
-    
+
     .footer-container {
         flex-direction: column;
         gap: 4vh;
         padding-top: 4vh;
     }
-    
+
     .footer-left {
         order: 1;
     }
-    
+
     .footer-right {
         order: 2;
         align-items: flex-start;
     }
-    
+
     .footer-center {
         order: 3;
     }
-    
+
     .connect-section {
         margin-top: 3vh;
     }
-    
+
     .connect-section h1 {
-        font-size: 10vw;
         text-align: left;
     }
 }
@@ -710,138 +697,77 @@ footer {
 /* Tablets Portrait */
 @media (max-width: 768px) {
     #nav {
-        padding: 0 20px;
+        padding: 10px 20px;
+        height: 60px;
     }
-    
+
     #nav img {
-        height: 40px;
+        height: 45px;
     }
-    
-    .cursor {
-        display: none;
+
+    #nav #circle {
+        height: 24px;
+        width: 24px;
     }
-    
-    .main {
-        cursor: auto;
-    }
-    
+
     .page1 {
         padding-top: 20vw;
     }
-    
+
     .page1 h1, .page1 h2 {
-        font-size: 12vw;
         margin-left: 6vw;
     }
-    
+
     .page1 h2 {
         margin-left: 8vw;
         padding-top: 20px;
     }
-    
+
     .page1 #image {
         width: 80%;
         margin-top: 12vw;
     }
-    
+
     .page2 {
         padding: 60px 4vw;
     }
-    
-    .page2 h1 {
-        font-size: 10vw;
-    }
-    
-    .page2-left h2 {
-        font-size: 4.5vw;
-        line-height: 6vw;
-    }
-    
-    .page2-right h2 {
-        font-size: 6vw;
-    }
-    
-    .job-title {
-        font-size: 4vw;
-    }
-    
-    .company-name {
-        font-size: 3.5vw;
-    }
-    
-    .job-duration {
-        font-size: 3vw;
-    }
-    
+
     #skills-marquee {
         padding: 6vw 0;
     }
-    
-    #moving-text h1 {
-        font-size: 8vw;
-    }
-    
+
     .gola {
-        height: 35px;
-        width: 35px;
         margin: 1vw 2vw;
     }
-    
+
     .page3 h1 {
-        font-size: 9vw;
         padding: 6vw;
     }
-    
+
     .page5 {
         padding: 60px 20px;
     }
-    
-    .page5 h2 {
-        font-size: 7vw;
-    }
-    
+
     .box {
         flex-direction: column;
         height: auto;
-        padding: 20px;
         text-align: center;
         gap: 10px;
+        min-height: 100px;
     }
-    
-    .box h3 {
-        font-size: 4.5vw;
-    }
-    
-    .box h4 {
-        font-size: 3.5vw;
-    }
-    
+
     footer {
         height: auto;
         min-height: 60vh;
         padding: 4vh 4vw 6vh 4vw;
     }
-    
+
     .footer-section h3 {
-        font-size: 4vw;
         margin-bottom: 3vw;
     }
-    
-    .social-links li a {
-        font-size: 5vw;
-    }
-    
-    .social-links li a i {
-        font-size: 4vw;
-    }
-    
+
     .connect-section h1 {
-        font-size: 12vw;
         text-align: left;
-    }
-    
-    .email {
-        font-size: 3.5vw;
     }
 }
 
@@ -850,190 +776,159 @@ footer {
     .page1 {
         padding-top: 25vw;
     }
-    
+
     .page1 h1, .page1 h2 {
-        font-size: clamp(2rem, 8vw, 4rem);
         margin-left: 5vw;
     }
-    
+
     .page1 h2 {
         margin-left: 8vw;
     }
-    
+
     .page1 #image {
         width: 90%;
         margin-top: 15vw;
     }
-    
+
     .page2 {
         padding: 50px 3vw;
     }
-    
-    .page2 h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-}
-    
-    .page2-left h2 {
-        font-size: 5vw;
-        line-height: 7vw;
-    }
-    
-    .page2-right h2 {
-        font-size: 7vw;
-    }
-    
-    .job-title {
-        font-size: 4.5vw;
-    }
-    
-    .company-name {
-        font-size: 4vw;
-    }
-    
-    .job-duration {
-        font-size: 3.5vw;
-    }
-    
+
     .page3 h1 {
-        font-size: 11vw;
         padding: 6vw 4vw;
     }
-    
+
     .page3-part1 img {
-    height: auto;
-    max-height: clamp(250px, 30vh, 400px);
-    width: 100%;
-    object-fit: cover;
-}
+        max-height: clamp(180px, 20vh, 220px);
+        width: 95%;
+    }
 
     .page3-part1 #image1 {
-        height: 220px;
+        max-height: clamp(180px, 20vh, 220px);
     }
-    
+
     .page5 {
         padding: 50px 15px;
     }
-    
-    .page5 h2 {
-        font-size: 8vw;
-    }
-    
+
     footer {
         height: auto;
         min-height: 50vh;
         padding: 3vh 3vw 5vh 3vw;
-    }
-    
-    .connect-section h1 {
-        font-size: clamp(3rem, 8vw, 6rem);
     }
 }
 
 /* Very Small Phones */
 @media (max-width: 320px) {
     .page1 h1, .page1 h2 {
-        font-size: 16vw;
+        font-size: clamp(2rem, 12vw, 3rem);
     }
-    
+
     .page2-left h2 {
-        font-size: 6vw;
-        line-height: 8vw;
-    }
-    
-    .connect-section h1 {
-        font-size: 18vw;
+        font-size: clamp(1rem, 5vw, 1.5rem);
+        line-height: 1.5;
     }
 }
 
-/* Windows Desktop FINAL FIX */
+/* Landscape Phone Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page1 {
+        padding-top: 10vh;
+    }
+
+    .page1 h1, .page1 h2 {
+        font-size: clamp(2rem, 8vh, 3rem);
+    }
+
+    .page1 #image {
+        width: 50%;
+        margin-top: 5vh;
+    }
+
+    #nav {
+        height: 50px;
+    }
+
+    #nav img {
+        height: 35px;
+    }
+}
+
+/* Desktop Fixes for Windows/Large Screens */
 @media (min-width: 1025px) {
     footer {
         height: auto !important;
         min-height: 85vh !important;
         padding: 4vh 5vw 10vh 5vw !important;
     }
-    
+
     .footer-container {
         padding-top: 4vh !important;
         min-height: 65vh !important;
     }
-    
-    .connect-section h1 {
-        font-size: 5vw !important;
-    }
-    
-    body {
+
+    body, html {
         overflow-x: hidden;
     }
 }
 
-/* BIG DESKTOP FIXES (1600px+ screens) */
+/* High Resolution Desktop Fixes */
 @media (min-width: 1600px) {
-    /* Fix About Me spacing */
     .page2 {
         min-height: 90vh !important;
         padding: 120px 5vw 150px 5vw !important;
     }
-    
+
     .page2 h1 {
-        font-size: 6vw !important;
         margin-bottom: 80px !important;
     }
-    
+
     .page2-container {
         height: auto !important;
         min-height: 50vh !important;
         gap: 60px !important;
     }
-    
+
     .page2-left h2 {
-        font-size: 2vw !important;
-        line-height: 3.2vw !important;
         margin-bottom: 40px !important;
     }
-    
-    /* Fix Footer for Big Desktop */
+
     footer {
         height: 100vh !important;
         min-height: 100vh !important;
         padding: 8vh 5vw 0 5vw !important;
         align-items: flex-start !important;
     }
-    
+
     .footer-container {
         padding-top: 12vh !important;
         min-height: 70vh !important;
         gap: 40px;
     }
-    
-    .connect-section h1 {
-        font-size: 4vw !important;
-    }
-    
-    /* Ensure main content doesn't overlap footer */
+
     .main {
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
     }
 }
 
-/* ULTRA WIDE DESKTOP FIXES (1920px+ screens) */
+/* Ultra Wide Desktop */
 @media (min-width: 1920px) {
     .page2 {
         padding: 150px 8vw 200px 8vw !important;
     }
-    
+
     .page2-container {
         gap: 80px !important;
         max-width: 1400px;
         margin: 0 auto;
     }
-    
+
     footer {
         height: 100vh !important;
         padding: 10vh 8vw 0 8vw !important;
     }
-    
+
     .footer-container {
         max-width: 1400px;
         margin: 0 auto;
@@ -1041,7 +936,7 @@ footer {
     }
 }
 
-/* WINDOWS HIGH DPI SCREENS FIX */
+/* High DPI Windows Screens */
 @media (min-width: 1400px) and (min-height: 900px) {
     footer {
         position: relative !important;
@@ -1050,29 +945,26 @@ footer {
         min-height: 100vh !important;
         padding: 6vh 5vw 20vh 5vw !important;
     }
-    
-    body {
-        overflow-x: hidden !important;
-    }
-    
-    html {
-        overflow-x: hidden !important;
-    }
 }
 
-/* Make navigation more touch-friendly */
-@media (max-width: 768px) {
-    #nav {
-        padding: 10px 20px;
-        height: 60px; /* Increase from 55px */
+/* Print Styles */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
     }
-    
-    #nav img {
-        height: 45px; /* Increase from 40px */
+
+    .cursor, #purple, .gola {
+        display: none !important;
     }
-    
-    #circle {
-        height: 24px; /* Increase from 18px */
-        width: 24px;
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    .page1, .page2, .page3, .page4, .page5 {
+        page-break-inside: avoid;
+        min-height: auto;
     }
 }
