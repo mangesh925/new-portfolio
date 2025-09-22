@@ -407,26 +407,21 @@ html, body {
 
 /* FIXED FOOTER FOR WINDOWS DESKTOP */
 footer {
-    height: auto;
-    min-height: 90vh;
     width: 100%;
     background-color: #fff;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 6vh 5vw 12vh 5vw;
-    box-sizing: border-box;
+    padding: 60px 40px;
+    position: relative;
+    display: block !important;
 }
 
 .footer-container {
-    width: 100%;
-    height: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    padding-top: 6vh;
-    min-height: 60vh;
+    gap: 40px;
 }
+
 
 .footer-left, .footer-right {
     flex: 1;
@@ -1074,5 +1069,16 @@ footer {
     #circle {
         height: 24px; /* Increase from 18px */
         width: 24px;
+    }
+}
+
+@media (min-width: 1366px) and (max-width: 1920px) {
+    footer {
+        padding: 80px 60px;
+    }
+    
+    .footer-container {
+        max-width: 1400px;
+        gap: 60px;
     }
 }

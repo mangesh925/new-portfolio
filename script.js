@@ -155,3 +155,44 @@ if (window.innerWidth >= 768) {
         cursor.style.top = dets.y + 20 + "px";
     });
 }
+
+// FOOTER FIX FOR THINKPAD/LARGER SCREENS
+function fixFooterOnThinkPad() {
+    const footer = document.querySelector('footer');
+    const footerContainer = document.querySelector('.footer-container');
+    const main = document.querySelector('.main');
+    
+    if (!footer || !footerContainer) return;
+    
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const isThinkPadScreen = screenWidth >= 1024 && screenWidth <= 1920 && screenHeight >= 600;
+    
+    if (isThinkPadScreen) {
+        // Reset conflicting styles
+        footer.style.position = 'relative';
+        footer.style.height = 'auto';
+        footer.style.overflow = 'visible';
+        
+        // Calculate proper height
+        const optimalHeight = Math.min(Math.max(screenHeight * 0.5, 400), 600);
+        footer.style.minHeight = optimalHeight + 'px';
+        footer.style.maxHeight = (screenHeight * 0.8) + 'px';
+        
+        // Ensure body layout works
+        document.body.style.display = 'flex';
+        document.body.style.flexDirection = 'column';
+        document.body.style.minHeight = '100vh';
+        
+        if (main) {
+            main.style.flex = '1';
+        }
+        
+        footer.style.flexShrink = '0';
+    }
+}
+
+// Run the fix
+document.addEventListener('DOMContentLoaded', fixFooterOnThinkPad);
+window.addEventListener('resize', fixFooterOnThinkPad);
+setTimeout(fixFooterOnThinkPad, 1000); // Run after other scripts
